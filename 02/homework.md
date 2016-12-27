@@ -18,3 +18,15 @@ unsigned replace_byte (unsigned x, int i, unsigned char b)
 	return result;
 }            
 ```
+上面这个代码可读性比较差啊，下面重新整理一下
+```c
+unsigned replace_byte (unsigned x, int i, unsigned char b)
+{
+	unsigned uval = (unsigned)b;
+	int shift = i << 3;
+	unsigned mask  = 0xff << shift;
+	uval = uval << shift;
+
+	return ((x^uval) ^ (x&mask));
+}
+```
