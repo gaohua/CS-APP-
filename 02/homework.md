@@ -8,12 +8,12 @@
 unsigned replace_byte (unsigned x, int i, unsigned char b)
 {
 	unsigned result = 0;
-	unsigned ival = (unsigned)b;
+	unsigned uval = (unsigned)b;
 
 	int y = 0xff << (i * 8);
-	ival = ival << (i * 8);
+	uval = uval << (i * 8);
 
-	result = (x ^ ival) ^ (x & y);
+	result = (x ^ uval) ^ (x & y);
 
 	return result;
 }            
