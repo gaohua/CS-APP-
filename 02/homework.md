@@ -30,3 +30,18 @@ unsigned replace_byte (unsigned x, int i, unsigned char b)
 	return ((x^uval) ^ (x&mask));
 }
 ```
+### 2.61
+```c
+A.!(~x)
+B.!x
+C.!(~(x&0xFF))
+D.!((x>>((sizeof(int)-1)<<3))&0xFF)
+```
+### 2.62
+```c
+int int_shifts_are_arithmetic()
+{
+	int ival = ~0;
+	return !(~(ival >> 1));
+}
+```
