@@ -76,3 +76,13 @@ int sra(int x, int k){
 			return !(~(x ^ mask));
 	}
 ```
+### 2.68
+```c
+/*
+ * 注意： ～0 >> n 和 （unsigned)~0 >> n
+*/
+int lower_one_mask(int n){
+	unsigned mask = ~0;
+	return mask >> ((sizeof(int)<<3)-n);
+}
+```
