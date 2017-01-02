@@ -86,3 +86,18 @@ int lower_one_mask(int n){
 	return mask >> ((sizeof(int)<<3)-n);
 }
 ```
+### 2.92
+```c
+/* compute -f. If f is NaN, then return f. */
+float_bits float_negate(float_bits f){
+	unsigned sign = f >> 31;
+	unsigned exp = f >> 23 & 0xFF;
+	unsigned frac = f & 0x7FFFFF;
+
+	sign = ~sign;
+	if((exp == 0xFF) && (frac > 0))
+		sign = ~sign;
+
+	return (sign << 31) | (exp << 23) | frac;
+}
+```
