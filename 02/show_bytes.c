@@ -35,7 +35,7 @@ void show_double(double x){
 
 void test_show_bytes(int val){
 	int ival = val;
-	float fval = (float)ival;
+	float fval = 3510593;//(float)ival;
 	int *pval = &ival;
 	short sval = (short)ival;
 	long lval = (long)ival;
