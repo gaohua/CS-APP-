@@ -108,7 +108,7 @@ float_bits float_absval(float_bits f)
 {
 	unsigned sign = f >> 31;
 	unsigned exp = (f >> 23) & 0xFF;
-	unsigned frac = f & 0x7FFFF;
+	unsigned frac = f & 0x7FFFFF;
 
 	unsigned tmp = sign ^ sign;
 	if((exp == 0xFF) && frac > 0)
@@ -121,4 +121,24 @@ float_bits float_absval(float_bits f)
 	return (sign<<31) | (exp<<23) | frac;
 }
 
+```
+### 2.94
+```c
+/* compute 2*f. if f is NaN, return f. */
+float_bits float_twice(float_bits f)
+{
+    float_bits result;
+    unsigned sign = f >> 31;
+    unsigned exp = (f >> 23) & 0xFF;
+    unsigned frac = f & 0x7FFFFF;
+
+    if((exp == 0xFF) && frac != 0)
+    {
+        result = f;
+    }
+    else
+        result = (sign << 31) | ((exp + 1) << 23) | frac;
+
+    return result;
+}
 ```
